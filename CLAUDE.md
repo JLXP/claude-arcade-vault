@@ -4,6 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 @AGENTS.md
 
+## Skills
+
+Usa siempre /frontend-design para diseniar la interfaz de usuario
+
 ## Project
 
 Arcade Vault — a platform for playing games online and competing for the highest score (see README.md).
@@ -27,10 +31,6 @@ This project pins `next@16.3.0`, a version newer than what most training data co
 
 ## Spec-driven workflow
 
-Per README.md, this project follows spec-driven design using the `/spec` and `/spec-impl` commands from the [fernando-skills](https://github.com/Klerith/fernando-skills) skill pack:
-
-```bash
-npx skills@latest add Klerith/fernando-skills
-```
+Per README.md, this project follows spec-driven design using the `/spec` and `/spec-impl` commands from the [fernando-skills](https://github.com/Klerith/fernando-skills) skill pack. The skills are already installed (`.agents/skills/spec`, `.agents/skills/spec-impl`, tracked in `skills-lock.json`) — no need to re-run the `npx skills@latest add` install.
 
 Prefer writing a spec first for non-trivial features before implementing.
