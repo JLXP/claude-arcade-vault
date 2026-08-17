@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { GameCard } from "@/components/game-card";
 import { GAMES, CATS } from "@/lib/data";
 
-export default function Home() {
+export default function LibraryPage() {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("TODOS");
 
