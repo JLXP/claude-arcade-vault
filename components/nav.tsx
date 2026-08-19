@@ -11,10 +11,11 @@ export function Nav() {
   const router = useRouter();
   const { user, logout } = useUser();
 
-  const isActive = (name: "home" | "library" | "leaderboard" | "auth") => {
+  const isActive = (name: "home" | "library" | "leaderboard" | "about" | "auth") => {
     if (name === "home") return pathname === "/";
     if (name === "library") return pathname === "/library" || pathname.startsWith("/games/");
     if (name === "leaderboard") return pathname === "/leaderboard";
+    if (name === "about") return pathname === "/about";
     return pathname === "/auth";
   };
 
@@ -38,6 +39,9 @@ export function Nav() {
           </Link>
           <Link href="/leaderboard" className={isActive("leaderboard") ? "active" : ""}>
             Salón de la Fama
+          </Link>
+          <Link href="/about" className={isActive("about") ? "active" : ""}>
+            Acerca de
           </Link>
         </div>
         <div className="spacer"></div>
@@ -72,6 +76,9 @@ export function Nav() {
         </Link>
         <Link href="/leaderboard" className={isActive("leaderboard") ? "active" : ""} onClick={close}>
           Salón de la Fama
+        </Link>
+        <Link href="/about" className={isActive("about") ? "active" : ""} onClick={close}>
+          Acerca de
         </Link>
         <Link href="/auth" className={isActive("auth") ? "active" : ""} onClick={close}>
           {user ? "Cuenta" : "Iniciar Sesión"}
