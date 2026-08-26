@@ -1,19 +1,15 @@
 "use client";
-
 import { useMemo, useState } from "react";
 import { GameCard } from "@/components/game-card";
 import { GAMES, CATS } from "@/lib/data";
-
 export default function LibraryPage() {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("TODOS");
-
   const filtered = useMemo(() => {
     return GAMES.filter(
       (g) => (cat === "TODOS" || g.cat === cat) && g.title.toLowerCase().includes(q.toLowerCase())
     );
   }, [q, cat]);
-
   return (
     <div className="fade-in">
       <section className="av-hero">
@@ -22,7 +18,6 @@ export default function LibraryPage() {
           INSERTA UNA MONEDA PARA JUGAR <span className="blink">_</span>
         </div>
       </section>
-
       <div className="av-filters">
         <div className="av-search">
           <span className="ico">⌕</span>
@@ -36,7 +31,6 @@ export default function LibraryPage() {
           ))}
         </div>
       </div>
-
       <div className="av-grid">
         {filtered.map((g) => (
           <GameCard key={g.id} game={g} />

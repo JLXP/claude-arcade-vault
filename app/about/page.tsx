@@ -1,16 +1,12 @@
 "use client";
-
 import { useState, type FormEvent } from "react";
 import { useReveal } from "@/lib/use-reveal";
-
 type IconKind = "HEART" | "BROWSER" | "PLANT";
-
 const HIGHLIGHTS: { i: IconKind; t: string; c: string }[] = [
   { i: "HEART", t: "HECHO CON ❤️ PARA JUGADORES", c: "magenta" },
   { i: "BROWSER", t: "JUEGOS EN HTML — CORREN EN CUALQUIER NAVEGADOR", c: "cyan" },
   { i: "PLANT", t: "PROYECTO EN CONSTANTE CRECIMIENTO", c: "green" },
 ];
-
 function HighlightIcon({ kind }: { kind: IconKind }) {
   const C = "currentColor";
   if (kind === "HEART")
@@ -53,34 +49,27 @@ function HighlightIcon({ kind }: { kind: IconKind }) {
     </svg>
   );
 }
-
 export default function AboutPage() {
   useReveal();
-
   const [form, setForm] = useState({ name: "", email: "", msg: "" });
   const [sent, setSent] = useState<string | null>(null);
   const [shake, setShake] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
   const triggerShake = () => {
     setShake(true);
     setTimeout(() => setShake(false), 400);
   };
-
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (sending) return;
-
     if (!form.name.trim() || !form.email.trim() || !form.msg.trim()) {
       setError(null);
       triggerShake();
       return;
     }
-
     setSending(true);
     setError(null);
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -92,13 +81,11 @@ export default function AboutPage() {
         }),
       });
       const data = await res.json().catch(() => null);
-
       if (!res.ok) {
         setError(data?.error || "No se pudo enviar el mensaje. Inténtalo de nuevo.");
         triggerShake();
         return;
       }
-
       setSent(form.name.trim());
     } catch {
       setError("No hay conexión con el servidor. Inténtalo de nuevo.");
@@ -107,7 +94,6 @@ export default function AboutPage() {
       setSending(false);
     }
   };
-
   return (
     <div className="about fade-in">
       {/* ABOUT */}
@@ -119,7 +105,6 @@ export default function AboutPage() {
           los arcades que definieron una generación, haciéndolos accesibles para todos, en cualquier lugar
           y sin costo.
         </p>
-
         <div className="highlight-row">
           {HIGHLIGHTS.map((h, i) => (
             <div key={h.i} className={"highlight " + h.c} style={{ transitionDelay: i * 80 + "ms" }}>
@@ -129,7 +114,6 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-
       {/* divider banner */}
       <div className="about-divider reveal" aria-hidden="true">
         <div className="div-bar"></div>
@@ -140,7 +124,6 @@ export default function AboutPage() {
         </div>
         <div className="div-bar"></div>
       </div>
-
       {/* CONTACT */}
       <section className="about-contact reveal">
         <div className="contact-grid">
@@ -157,7 +140,6 @@ export default function AboutPage() {
               <div className="tip"><span className="tip-led m"></span>SIN SPAM, JAMÁS</div>
             </div>
           </div>
-
           <form className={"contact-form" + (shake ? " shake" : "")} onSubmit={onSubmit}>
             {!sent ? (
               <>

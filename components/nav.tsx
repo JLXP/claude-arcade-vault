@@ -1,16 +1,13 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "@/lib/user-context";
-
 export function Nav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const { user, logout } = useUser();
-
   const isActive = (name: "home" | "library" | "leaderboard" | "about" | "auth") => {
     if (name === "home") return pathname === "/";
     if (name === "library") return pathname === "/library" || pathname.startsWith("/games/");
@@ -18,9 +15,7 @@ export function Nav() {
     if (name === "about") return pathname === "/about";
     return pathname === "/auth";
   };
-
   const close = () => setOpen(false);
-
   return (
     <>
       <nav className="av-nav">
@@ -62,7 +57,6 @@ export function Nav() {
           ≡
         </button>
       </nav>
-
       <div className={"av-mobile-backdrop" + (open ? " open" : "")} onClick={close}></div>
       <aside className={"av-mobile-panel" + (open ? " open" : "")}>
         <div className="pixel neon-cyan" style={{ fontSize: 11, marginBottom: 16 }}>

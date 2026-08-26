@@ -1,5 +1,4 @@
 import type { Game, ScoreRow } from "./types";
-
 export const GAMES: Game[] = [
   {
     id: "bloque-buster",
@@ -90,15 +89,12 @@ export const GAMES: Game[] = [
     plays: "4.2K",
   },
 ];
-
 export const CATS = ["TODOS", "ARCADE", "PUZZLE", "SHOOTER", "VERSUS"];
-
 export const PLAYERS = [
   "PX_KAI", "NEONFOX", "Z3R0COOL", "M00NRYU", "VAULT_07", "GLITCHA",
   "ATARI_KID", "CYBER_LU", "MAGENTA88", "SCANLINE", "BIT_LORD", "ARKADYA",
   "DROID_X", "RGB_QUEEN", "PIXEL_DAD", "RETROVIRA", "VECTORX", "JOY_STK",
 ];
-
 export function seededScores(seed: number, count = 12): ScoreRow[] {
   let s = seed;
   const rand = () => (s = (s * 9301 + 49297) % 233280) / 233280;

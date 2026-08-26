@@ -1,10 +1,8 @@
 "use client";
-
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { GAMES, seededScores } from "@/lib/data";
 import { useUser } from "@/lib/user-context";
-
 export default function LeaderboardPage() {
   const router = useRouter();
   const { user } = useUser();
@@ -13,7 +11,6 @@ export default function LeaderboardPage() {
   const game = GAMES.find((g) => g.id === tab)!;
   const youRank = user ? Math.floor(8 + (tab.length % 4)) : null;
   const youScore = user ? rows[5]?.score - 2400 : null;
-
   return (
     <div className="av-hall fade-in">
       <div className="hall-head">
@@ -22,7 +19,6 @@ export default function LeaderboardPage() {
           LOS NOMBRES QUE NUNCA SE BORRAN DE LA PANTALLA
         </p>
       </div>
-
       <div className="hall-tabs">
         {GAMES.map((g) => (
           <button key={g.id} className={"chip" + (tab === g.id ? " active" : "")} onClick={() => setTab(g.id)}>
@@ -30,7 +26,6 @@ export default function LeaderboardPage() {
           </button>
         ))}
       </div>
-
       <div className="podium">
         <div className="podium-slot silver">
           <div className="rank-num">02</div>
@@ -58,7 +53,6 @@ export default function LeaderboardPage() {
           <div className="date">{rows[2].date}</div>
         </div>
       </div>
-
       <div className="hall-table">
         <div className="th">
           <div>RANGO</div>
@@ -96,7 +90,6 @@ export default function LeaderboardPage() {
           </>
         )}
       </div>
-
       <div style={{ textAlign: "center", marginTop: 32 }}>
         <button className="btn lg" onClick={() => router.push("/")}>
           VOLVER A LA BIBLIOTECA

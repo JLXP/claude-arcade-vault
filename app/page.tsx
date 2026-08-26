@@ -1,10 +1,8 @@
 "use client";
-
 import { useRouter } from "next/navigation";
 import type { Game } from "@/lib/types";
 import { GAMES } from "@/lib/data";
 import { useReveal } from "@/lib/use-reveal";
-
 function FloatingSilhouettes() {
   return (
     <div className="home-silos" aria-hidden="true">
@@ -86,7 +84,6 @@ function FloatingSilhouettes() {
     </div>
   );
 }
-
 function MiniCard({ game, onClick }: { game: Game; onClick: () => void }) {
   return (
     <div className="mini-card" onClick={onClick}>
@@ -100,7 +97,6 @@ function MiniCard({ game, onClick }: { game: Game; onClick: () => void }) {
     </div>
   );
 }
-
 function FeatureIcon({ kind }: { kind: string }) {
   const C = "currentColor";
   if (kind === "GAMEPAD")
@@ -152,20 +148,17 @@ function FeatureIcon({ kind }: { kind: string }) {
     );
   return null;
 }
-
 const FEATURES = [
   { i: "GAMEPAD", t: "JUEGOS CLÁSICOS", d: "Arkanoid, Tetris, Snake y muchos más. Los mejores arcades de todos los tiempos en un solo lugar.", c: "cyan" },
   { i: "FREE", t: "100% GRATIS", d: "Sin suscripciones, sin pagos ocultos. Todos los juegos disponibles de forma gratuita.", c: "yellow" },
   { i: "TROPHY", t: "LADDER BOARDS", d: "Compite con jugadores de todo el mundo. Escala el ranking y demuestra quién es el mejor.", c: "magenta" },
   { i: "ROCKET", t: "SIEMPRE CRECIENDO", d: "Agregamos nuevos juegos constantemente. Vuelve seguido, siempre habrá algo nuevo que jugar.", c: "green" },
 ];
-
 const STATS = [
   { n: "12+", u: "JUEGOS", s: "Y CONTANDO" },
   { n: "MILES", u: "DE PARTIDAS", s: "JUGADAS CADA DÍA" },
   { n: "GLOBAL", u: "RANKING", s: "COMPITE CON EL MUNDO" },
 ];
-
 const TICKER = [
   { p: "NEONFOX", g: "Caída", s: 184220, t: "hace 2 min", c: "magenta" },
   { p: "PX_KAI", g: "Glotón", s: 96400, t: "hace 5 min", c: "yellow" },
@@ -175,7 +168,6 @@ const TICKER = [
   { p: "ARKADYA", g: "Serpentina", s: 7820, t: "hace 24 min", c: "green" },
   { p: "CYBER_LU", g: "Ranaria", s: 18900, t: "hace 31 min", c: "yellow" },
 ];
-
 const TOP_PLAYERS = [
   { r: 1, p: "NEONFOX", s: 312840 },
   { r: 2, p: "PX_KAI", s: 248110 },
@@ -183,11 +175,9 @@ const TOP_PLAYERS = [
   { r: 4, p: "VAULT_07", s: 154300 },
   { r: 5, p: "GLITCHA", s: 138900 },
 ];
-
 export default function Home() {
   useReveal();
   const router = useRouter();
-
   return (
     <div className="home fade-in">
       {/* HERO */}
@@ -221,7 +211,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* WHY */}
       <section className="home-section reveal">
         <div className="section-head">
@@ -239,7 +228,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
       {/* GAMES PREVIEW */}
       <section className="home-section reveal">
         <div className="section-head">
@@ -258,7 +246,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-
       {/* STATS */}
       <section className="home-stats reveal">
         <div className="stats-inner">
@@ -271,7 +258,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
       {/* RECENT ACTIVITY / LEADERBOARD */}
       <section className="home-section reveal">
         <div className="section-head">
@@ -295,7 +281,6 @@ export default function Home() {
               ))}
             </div>
           </div>
-
           <div className="activity-card">
             <div className="ac-head">
               <div className="ac-title pixel neon-magenta">▸ TOP JUGADORES · HOY</div>
@@ -318,7 +303,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* PRICING */}
       <section className="home-section reveal">
         <div className="section-head">
@@ -353,7 +337,6 @@ export default function Home() {
               PLAY
             </div>
           </div>
-
           <div className="pricing-faq">
             <div className="faq-item">
               <div className="faq-q pixel">¿REALMENTE ES GRATIS?</div>
@@ -376,7 +359,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* FINAL CTA */}
       <section className="home-final reveal">
         <h2 className="final-title pixel">¿LISTO PARA JUGAR?</h2>

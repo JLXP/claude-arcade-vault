@@ -20,7 +20,14 @@ cd "$root" || exit 0
 npx --no-install prettier --write --ignore-unknown "$file" >/dev/null 2>&1
 
 case "$file" in
+  *.css|*.scss)
+    # ESLint no cubre CSS. Aqui no hay template literals que romper, asi que
+    # se borran las lineas en blanco a mano. Markdown y JSON quedan intactos.
+    tmp=$(mktemp) && grep -v '^[[:space:]]*$' "$file" > "$tmp" && cat "$tmp" > "$file" && rm -f "$tmp"
+    ;;
   *.ts|*.tsx|*.js|*.jsx|*.mjs|*.cjs)
+    # Las lineas en blanco las quita no-multiple-empty-lines (eslint.config.mjs),
+    # que es AST-aware y respeta las que van dentro de template literals.
     # eslint sale 0 con warnings, asi que se reporta cualquier salida, no solo errores.
     out=$(npx --no-install eslint --fix "$file" 2>&1)
     if [ -n "$out" ]; then
