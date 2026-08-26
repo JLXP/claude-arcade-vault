@@ -1,9 +1,7 @@
 "use client";
-
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/lib/user-context";
-
 export default function AuthPage() {
   const router = useRouter();
   const { login, loginGuest } = useUser();
@@ -11,18 +9,15 @@ export default function AuthPage() {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [email, setEmail] = useState("");
-
   const submit = (e: FormEvent) => {
     e.preventDefault();
     login({ name: (user || "PLAYER1").toUpperCase().slice(0, 10) });
     router.push("/");
   };
-
   const playAsGuest = () => {
     loginGuest();
     router.push("/");
   };
-
   return (
     <div className="av-auth-wrap fade-in">
       <div className="auth-card">
@@ -33,7 +28,6 @@ export default function AuthPage() {
             ACCESO AL SISTEMA · v2.6
           </div>
         </div>
-
         <div className="auth-tabs">
           <button className={tab === "in" ? "on" : ""} onClick={() => setTab("in")}>
             INICIAR SESIÓN
@@ -42,7 +36,6 @@ export default function AuthPage() {
             CREAR CUENTA
           </button>
         </div>
-
         <form onSubmit={submit}>
           <div className="field">
             <label>Usuario</label>
@@ -58,16 +51,13 @@ export default function AuthPage() {
             <label>Contraseña</label>
             <input type="password" value={pass} onChange={(e) => setPass(e.target.value)} placeholder="••••••••" />
           </div>
-
           <button className="btn lg" type="submit" style={{ width: "100%", marginTop: 8 }}>
             {tab === "in" ? "ENTRAR AL VAULT" : "CREAR Y JUGAR"}
           </button>
         </form>
-
         <button className="btn ghost" style={{ width: "100%", marginTop: 10 }} onClick={playAsGuest}>
           JUGAR COMO INVITADO
         </button>
-
         <div className="auth-divider">O CONTINÚA CON</div>
         <div className="social">
           <button className="btn ghost" type="button">
@@ -77,7 +67,6 @@ export default function AuthPage() {
             ▣ GITHUB
           </button>
         </div>
-
         <div style={{ marginTop: 18, textAlign: "center", fontSize: 11, color: "var(--ink-faint)", letterSpacing: "0.1em" }}>
           AL ENTRAR ACEPTAS LOS TÉRMINOS DEL SALÓN ARCADE
         </div>

@@ -1,14 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { GAMES, seededScores } from "@/lib/data";
-
 export default async function GameDetailPage(props: PageProps<"/games/[id]">) {
   const { id } = await props.params;
   const game = GAMES.find((g) => g.id === id);
   if (!game) notFound();
-
   const scores = seededScores(id.length * 17 + 3, 10);
-
   return (
     <div className="av-detail fade-in">
       <div>
@@ -52,7 +49,6 @@ export default async function GameDetailPage(props: PageProps<"/games/[id]">) {
           </div>
         </div>
       </div>
-
       <aside>
         <div className="leaderboard">
           <h3>MEJORES PUNTUACIONES</h3>

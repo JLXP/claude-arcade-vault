@@ -1,10 +1,8 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { GAMES } from "@/lib/data";
 import { useUser } from "@/lib/user-context";
-
 function saveScore(entry: { game: string; score: number; name: string }) {
   try {
     const all = JSON.parse(localStorage.getItem("av_scores") || "[]");
@@ -12,34 +10,27 @@ function saveScore(entry: { game: string; score: number; name: string }) {
     localStorage.setItem("av_scores", JSON.stringify(all));
   } catch {}
 }
-
 export default function GamePlayerPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { user } = useUser();
   const game = GAMES.find((g) => g.id === id);
-
   const [score, setScore] = useState(0);
   const [lives] = useState(3);
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(false);
   const [name, setName] = useState(user ? user.name : "INVITADO");
   const [saved, setSaved] = useState(false);
-
   const level = Math.floor(score / 2500) + 1;
-
   useEffect(() => {
     if (over || paused) return;
     const t = setInterval(() => setScore((s) => s + Math.floor(10 + Math.random() * 90)), 220);
     return () => clearInterval(t);
   }, [over, paused]);
-
   useEffect(() => {
     if (!game) router.replace("/");
   }, [game, router]);
-
   if (!game) return null;
-
   const endGame = () => setOver(true);
   const restart = () => {
     setScore(0);
@@ -47,7 +38,6 @@ export default function GamePlayerPage() {
     setOver(false);
     setSaved(false);
   };
-
   return (
     <div className="av-player fade-in">
       <div className="player-hud">
@@ -83,7 +73,6 @@ export default function GamePlayerPage() {
           </button>
         </div>
       </div>
-
       <div className="crt">
         <div className="crt-screen">
           <div className="game-arena">
@@ -112,7 +101,6 @@ export default function GamePlayerPage() {
           <span>CARGA · 1MB</span>
         </div>
       </div>
-
       {over && (
         <div className="modal-bd">
           <div className="modal">

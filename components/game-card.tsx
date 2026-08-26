@@ -1,13 +1,10 @@
 "use client";
-
 import { useRef, type MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 import type { Game } from "@/lib/types";
-
 export function GameCard({ game }: { game: Game }) {
   const tiltRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-
   const onMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = tiltRef.current;
     if (!el) return;
@@ -16,15 +13,12 @@ export function GameCard({ game }: { game: Game }) {
     const py = (e.clientY - r.top) / r.height - 0.5;
     el.style.transform = `translateY(-6px) rotateX(${-py * 6}deg) rotateY(${px * 8}deg)`;
   };
-
   const onLeave = () => {
     const el = tiltRef.current;
     if (!el) return;
     el.style.transform = "";
   };
-
   const select = () => router.push(`/games/${game.id}`);
-
   return (
     <div ref={tiltRef} className="card" onMouseMove={onMove} onMouseLeave={onLeave} onClick={select}>
       <div className="cover">
